@@ -6,7 +6,7 @@
 export const HUD_CSS = /* css */`
 .wx { position: absolute; inset: 0; overflow: hidden; pointer-events: none; user-select: none; -webkit-user-select: none;
   --ink: #e8d3ad; --ink-hi: #f3e4c4; --ink-dim: rgba(232,211,173,.58); --verm: #b8322a; --verm-hi: #d9493c; --sumi: #0c0b09; --gold: #f4cf86;
-  --f-brush: 'Ma Shan Zheng', 'Noto Serif SC', serif; --f-serif: 'Noto Serif SC', serif; --f-latin: 'Cormorant Garamond', 'Noto Serif SC', serif;
+  --f-brush: 'Ma Shan Zheng', 'Noto Serif KR', 'Noto Serif SC', serif; --f-serif: 'Noto Serif KR', 'Noto Serif SC', serif; --f-latin: 'Cormorant Garamond', 'Noto Serif KR', 'Noto Serif SC', serif;
   --none: linear-gradient(transparent, transparent);
   --t-stroke: var(--none); --t-stroke2: var(--none); --t-stroke3: var(--none); --t-thin: var(--none); --t-enso: var(--none); --t-enso2: var(--none);
   --t-splat: var(--none); --t-splat2: var(--none); --t-wash: var(--none); --t-edge: var(--none); --t-tick: var(--none);
