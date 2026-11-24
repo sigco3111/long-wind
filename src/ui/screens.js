@@ -7,50 +7,50 @@ export const numeral = (n) => (n <= 10 ? NUMERALS[n] : n < 20 ? '十' + NUMERALS
 
 // Default names per wave (used when the director's title is missing or not Chinese).
 export const WAVES = [
-  { tt: '风起', en: 'The wind rises' },
-  { tt: '草动', en: 'The grass stirs' },
-  { tt: '剑鸣', en: 'The sword sings' },
-  { tt: '云散', en: 'The clouds part' },
-  { tt: '雁回', en: 'The geese return' },
+  { tt: '风起', en: '바람이 일다' },
+  { tt: '草动', en: '풀이 흔들리다' },
+  { tt: '剑鸣', en: '검이 울다' },
+  { tt: '云散', en: '구름이 걷히다' },
+  { tt: '雁回', en: '기러기가 돌아오다' },
 ];
-export const BOSS_WAVE = { no: '终回', tt: '长风', en: 'The long wind' };
-export const WAVE_EN = { 风起: 'The wind rises', 草动: 'The grass stirs', 剑鸣: 'The sword sings', 云散: 'The clouds part', 长风: 'The long wind', 雁回: 'The geese return', 风定: 'The field falls still' };
+export const BOSS_WAVE = { no: '최종', tt: '长风', en: '긴 바람' };
+export const WAVE_EN = { 风起: '바람이 일다', 草动: '풀이 흔들리다', 剑鸣: '검이 울다', 云散: '구름이 걷히다', 长风: '긴 바람', 雁回: '기러기가 돌아오다', 风定: '들판이 고요해진다' };
 
 // Default boss names by enemy kind (director may send its own via enemy:spawn {name, sub}).
 export const BOSS_NAMES = {
-  swordmaster: { name: '寒山客', sub: 'Swordmaster of Cold Mountain' },
-  boss: { name: '寒山客', sub: 'Swordmaster of Cold Mountain' },
-  bandit_heavy: { name: '断岳', sub: 'The Mountain-Breaker' },
-  assassin: { name: '夜枭', sub: 'The Night Owl' },
+  swordmaster: { name: '寒山客', sub: '한산객 · 차가운 산의 검객' },
+  boss: { name: '寒山客', sub: '한산객 · 차가운 산의 검객' },
+  bandit_heavy: { name: '断岳', sub: '단악 · 산을 부수는 자' },
+  assassin: { name: '夜枭', sub: '야효 · 밤의 자객' },
 };
 
 export const CONTROLS = [
-  ['W A S D', '行', 'move'],
-  ['Mouse', '顾', 'look'],
-  ['LMB', '斩', 'strike'],
-  ['Hold LMB', '劈', 'heavy'],
-  ['RMB', '格', 'block · parry on impact'],
-  ['Space', '闪', 'dodge'],
-  ['Shift', '疾', 'sprint'],
-  ['Q · Tab', '锁', 'lock on'],
-  ['E', '气', 'sword qi'],
-  ['F', '剑', 'draw · sheathe'],
-  ['Esc', '歇', 'pause'],
+  ['W A S D', '行', '이동'],
+  ['Mouse', '顾', '시선'],
+  ['LMB', '斩', '베기'],
+  ['Hold LMB', '劈', '강하게 베기'],
+  ['RMB', '格', '막기 · 적중 타이밍 패링'],
+  ['Space', '闪', '회피'],
+  ['Shift', '疾', '질주'],
+  ['Q · Tab', '锁', '조준 고정'],
+  ['E', '气', '검기'],
+  ['F', '剑', '발도 · 납도'],
+  ['Esc', '歇', '일시정지'],
 ];
 // The in-game hint shows only the essentials.
 export const HINT = [0, 2, 4, 5, 7, 8];
 
 export const VICTORY = {
   lines: ['十步杀一人', '千里不留行', '事了拂衣去', '深藏身与名'],
-  en: 'Ten paces, and a man falls; a thousand li, and no trace remains.<br>The deed done, he shakes out his robe and goes, keeping his name and self unknown.',
-  src: 'Li Bai · The Wandering Swordsman',
-  go: ['再战', 'ride on'],
+  en: '열 걸음마다 한 사람을 베고, 천 리를 가도 자취를 남기지 않네.<br>일을 마치면 옷자락 털고 떠나, 몸과 이름을 깊이 감추네.',
+  src: '이백 《협객행》',
+  go: ['다시 싸우다', 'ride on'],
 };
 export const DEFEAT = {
   lines: ['风萧萧兮易水寒', '壮士一去兮不复还'],
-  en: 'The wind sighs, and the waters of the Yi run cold;<br>the warrior sets out, and does not return.',
-  src: 'Song of the Yi River',
-  go: ['再起', 'rise again'],
+  en: '바람은 쓸쓸히 불고 역수 물은 차거늘,<br>장사가 한 번 떠나면 다시 돌아오지 않네.',
+  src: '《역수가》',
+  go: ['다시 일어서다', 'rise again'],
 };
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -90,9 +90,9 @@ ${FILTERS}
 
 <div class="scr title">
   <div class="shade"></div>
-  <div class="col"><div class="tt">长风</div><div class="tg">天苍苍 · 野茫茫</div><img class="seal" alt=""></div>
+  <div class="col"><div class="tt">长风</div><div class="tg">하늘은 아득하고 · 들판은 끝없어라</div><img class="seal" alt=""></div>
   <div class="en"><b>LONG WIND</b><i>the wind arrives before the blade</i></div>
-  <div class="go"><div class="ln m"></div><div class="t"><b>点击 · 启程</b><i>click to begin</i></div><div class="ln r m"></div></div>
+  <div class="go"><div class="ln m"></div><div class="t"><b>클릭 · 출발</b><i>click to begin</i></div><div class="ln r m"></div></div>
 </div>
 
 <div class="scr pause">
@@ -100,11 +100,11 @@ ${FILTERS}
   <div class="pn">
     <div class="hd">歇<small>PAUSED</small></div>
     <div class="mn">
-      <button data-act="resume"><b>继续</b><i>resume</i></button>
-      <button data-act="restart"><b>重来</b><i>restart</i></button>
-      <button data-act="controls"><b>招式</b><i>controls</i></button>
-      <div class="vol"><b>声</b><div class="sl"><div class="tr m"></div><div class="fl m"></div></div><i>volume</i></div>
-      <div class="qual"><b>画</b><span class="qo" data-q="low">流畅</span><span class="qo" data-q="med">均衡</span><span class="qo" data-q="high">极致</span><i>quality</i></div>
+      <button data-act="resume"><b>계속</b><i>resume</i></button>
+      <button data-act="restart"><b>다시 시작</b><i>restart</i></button>
+      <button data-act="controls"><b>조작법</b><i>controls</i></button>
+      <div class="vol"><b>소리</b><div class="sl"><div class="tr m"></div><div class="fl m"></div></div><i>volume</i></div>
+      <div class="qual"><b>화질</b><span class="qo" data-q="low">원활</span><span class="qo" data-q="med">균형</span><span class="qo" data-q="high">최고</span><i>quality</i></div>
       <div class="ctl">${CONTROLS.map(([k, zh, en]) => `<kbd>${k}</kbd><span>${zh}<i>${en}</i></span>`).join('')}</div>
     </div>
   </div>
