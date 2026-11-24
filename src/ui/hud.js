@@ -27,7 +27,7 @@
 import * as THREE from 'three';
 import { bus } from '../core/bus.js';
 import { HUD_CSS } from './style.js';
-import { HUD_HTML, WAVES, BOSS_WAVE, WAVE_EN, BOSS_NAMES, VICTORY, DEFEAT, fillEnding, numeral, esc } from './screens.js';
+import { HUD_HTML, WAVES, BOSS_WAVE, WAVE_EN, BOSS_NAMES, VICTORY, DEFEAT, fillEnding, esc } from './screens.js';
 import { buildTextures } from './textures.js';
 
 const CJK = /[㐀-鿿]/;
@@ -293,7 +293,7 @@ export function createHUD(app, opts = {}) {
     const n = Number.isFinite(p.index) && p.index >= 1 ? p.index : ++S.waveCount;
     S.waveCount = n;
     let title = typeof p.title === 'string' ? p.title.trim() : '';
-    let no = `第${numeral(Math.max(1, n))}回`, tt, en = typeof p.sub === 'string' ? p.sub : '';
+    let no = `제${Math.max(1, n)}회`, tt, en = typeof p.sub === 'string' ? p.sub : '';
     if (title.includes('·')) { const [a, b] = title.split('·').map((x) => x.trim()); if (CJK.test(a)) no = a; title = b; }
     if (title && CJK.test(title)) { tt = title; en = en || WAVE_EN[tt] || ''; }
     else { const d = p.boss ? BOSS_WAVE : WAVES[(Math.max(1, n) - 1) % WAVES.length]; tt = d.tt; en = en || title || d.en; }
@@ -324,7 +324,7 @@ export function createHUD(app, opts = {}) {
   function fillStats() {
     const t = Math.round(S.playTime), mm = Math.floor(t / 60), ss = String(t % 60).padStart(2, '0');
     el.victory.querySelector('.st').innerHTML =
-      `<div><b>${mm}:${ss}</b><i>用时</i></div><div><b>${S.kills}</b><i>斩敌</i></div><div><b>${S.perfect}</b><i>识破</i></div>`;
+      `<div><b>${mm}:${ss}</b><i>시간</i></div><div><b>${S.kills}</b><i>처치</i></div><div><b>${S.perfect}</b><i>패링</i></div>`;
   }
   function showHint(sec = 14) { el.hint.classList.add('on'); S.hintT = sec; }
   /** Back to a blank slate (arena reset / harness): forget enemies, clear banners and screens, full health. */
@@ -417,7 +417,7 @@ export function createHUD(app, opts = {}) {
   const autoplay = () => { if (S.state === 'boot') setState('playing'); };
   on('game:state', (p) => setState(p.state));
   on('wave:start', (p) => { autoplay(); waveBanner(p); });
-  on('wave:clear', (p) => { if (!p?.final) banner('风定', { no: '', en: 'The field falls still', seal: false, hold: 2.6 }); });
+  on('wave:clear', (p) => { if (!p?.final) banner('风定', { no: '', en: '들판이 고요해진다', seal: false, hold: 2.6 }); });
   on('player:hp', (p) => { autoplay(); setPlayer({ hp: p.hp, max: p.max }); });
   on('player:focus', (p) => { autoplay(); setPlayer({ focus: p.value, focusMax: p.max }); });
   on('player:hurt', (p) => flourish('hurt', p.pos, p.dir));
@@ -486,7 +486,7 @@ export function createHUD(app, opts = {}) {
   // combo counter (gameplay emits player:combo {n}; 0 = chain broken)
   const combo = document.createElement('div');
   combo.className = 'combo';
-  combo.innerHTML = '<span class="n"></span><span class="l">连斩</span>';
+  combo.innerHTML = '<span class="n"></span><span class="l">연참</span>';
   root.appendChild(combo);
   let comboFade = 0;
   on('player:combo', (p) => {
