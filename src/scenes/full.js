@@ -37,33 +37,33 @@ export default async function (app) {
   // townsfolk bodies build in the workers while the world loads (world/citizens.js)
   if (BI.citizens) import('../world/citizens.js').then((m) => m.prefetchCitizens?.()).catch(() => {});
 
-  await step(0.05, '天 · sky');
+  await step(0.05, '天 · 하늘');
   const env = await load('environment', '../world/environment.js', 'createEnvironment', app,
     { mood: p.get('mood') || EV.mood || 'golden', drift: EV.drift ?? true });
   if (env && EV.u !== undefined && !p.has('mood')) env.setU?.(EV.u, 0);
   if (env && EV.storm) env.setStorm?.(EV.storm, 0);
   if (env && EV.exposure) env.exposureMul = EV.exposure;
 
-  await step(0.14, '地 · earth');
+  await step(0.14, '地 · 땅');
   const terrain = await load('terrain', '../world/terrain.js', 'createTerrain', app);
-  await step(0.28, '山 · mountains');
+  await step(0.28, '山 · 산');
   await load('mountains', '../world/mountains.js', 'createMountains', app);
-  await step(0.34, '石 · stone');
+  await step(0.34, '石 · 돌');
   await load('rocks', '../world/rocks.js', 'createRocks', app);
   await load('props', '../world/props.js', 'createProps', app);
 
-  await step(0.44, '风 · wind');
+  await step(0.44, '风 · 바람');
   const interaction = await load('interaction', '../world/interaction.js', 'createInteraction', app);
-  await step(0.5, '草 · grass');
+  await step(0.5, '草 · 풀');
   // density per tier from the quality preset (core/quality.js): near stays dense, far tiers thin out behind wider blades
   const grass = await load('grass', '../world/grass.js', 'createGrass', app, { density: app.quality?.grass ?? [1.15, 0.85, 0.65] });
   if (grass && BI.grassHeight) grass.setHeight(BI.grassHeight);
   app.grass = grass;
   { const { applyQuality } = await import('../core/quality.js'); const { bus } = await import('../core/bus.js');
     bus.on('ui:quality', (p) => applyQuality(app, p.name, { grass })); }
-  await step(0.6, '花 · flowers');
+  await step(0.6, '花 · 꽃');
   if (BI.flowers || BI.plumes) await load('flora', '../world/flora.js', 'createFlora', app, { flowers: BI.flowers, plumes: BI.plumes });
-  await step(0.66, BI.bamboo ? '竹 · bamboo' : '树 · tree');
+  await step(0.66, BI.bamboo ? '竹 · 대나무' : '树 · 나무');
   await load('trees', '../world/trees.js', 'createTrees', app, { hero: BI.heroTree, pines: BI.pines, band: BI.band });
   if (BI.bamboo) {
     const { roadQuery } = await import('../world/terrain-field.js');
@@ -79,10 +79,10 @@ export default async function (app) {
   }
 
   if (BI.town) {
-    await step(0.69, '街 · street');
+    await step(0.69, '街 · 거리');
     app.town = await load('town', '../world/town.js', 'createTown', app, { town: LAYOUT.town });
   }
-  await step(0.72, '尘 · motes');
+  await step(0.72, '尘 · 먼지');
   const vfx = await load('vfx', '../fx/vfx.js', 'createVFX', app, { interaction });
   await load('ambient', '../fx/ambient.js', 'createAmbient', app);
   // weather: rain + wet ground (fx/rain.js; G.uWet drives the terrain material)
@@ -91,11 +91,11 @@ export default async function (app) {
   if (EV.rain) rain = await load('rain', '../fx/rain.js', 'createRain', app, { intensity: EV.rain, wet: !EV.wet });
   if (EV.wet) { const { G } = await import('../core/globals.js'); if (G.uWet) G.uWet.value = EV.wet; }
 
-  await step(0.8, '声 · sound');
+  await step(0.8, '声 · 소리');
   const hud = await load('hud', '../ui/hud.js', 'createHUD', app);
   const audio = await load('audio', '../audio/audio.js', 'createAudio', app);
 
-  await step(0.86, '剑 · sword');
+  await step(0.86, '剑 · 검');
   const game = await load('game', '../game/game.js', 'createGame', app, { env, terrain, grass, vfx, hud, audio, interaction });
   // phones and tablets: thumb-stick, look drag and brush buttons (?touch=1 forces them, ?touch=0 turns them off)
   if (game && hud) await load('touch', '../ui/touch.js', 'createTouchControls', app, { game, hud });
