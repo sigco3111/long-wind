@@ -121,3 +121,4 @@ URL 파라미터: `?level=steppe|bamboo|town` (장 선택), `?q=low|med|high` (�
   - 폰트: Ma Shan Zheng, Noto Serif SC, Cormorant Garamond (Google Fonts, SIL OFL) + Noto Serif KR (한글화용 추가, SIL OFL)
   - 인용 고전시: 敕勒歌, 李白《俠客行》, 《易水歌》 — 퍼블릭 도메인 고전
 - 원작: [jbang2004/long-wind](https://github.com/jbang2004/long-wind) · 원작자 jbang2004에게 모든 공로가 있습니다
+- **재배포 권리 고지(한글화 포크)**: 이 포크의 공개 배포는 원작이 공개 저장소로 배포되고 있는 점과 위 크레딧·제한 고지를 유지하는 것을 바탕으로 진행했습니다. 다만 Tripo AI 생성 모델의 게임 통합 재배포가 원작자의 이용 플랜과 약관상 명시적으로 허용되는지는 확인되지 않았고, 원작자에게 별도로 확인하지 않았습니다. 제삼자 에셋의 권리는 원저작자와 각 서비스 약관에 있으며, 권리자의 문제 제기가 있으면 이 포크는 비공개로 전환될 수 있습니다.
