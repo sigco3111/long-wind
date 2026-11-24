@@ -46,7 +46,7 @@ export async function buildTextures(root) {
   const seals = {};
   try {
     await Promise.race([
-      Promise.all([document.fonts.load('900 64px "Noto Serif SC"', '长风剑破侠胜败歇'), document.fonts.load('64px "Ma Shan Zheng"', '长风')]),
+      Promise.all([document.fonts.load('900 64px "Noto Serif SC"', '长风剑破侠胜败歇'), document.fonts.load('64px "Ma Shan Zheng"', '长风'), document.fonts.load('400 20px "Noto Serif KR"', '장풍죽림야우가등화하늘은아득하고들판끝없어라클릭출발계속다시시작조작법소리화질원활균형최고시간처패링연참전진이동시선베기강하게막기적중타이밍회피질주조고정검발도납도일시정제회종바람이일다풀이흔들리울구름걷히다기러기돌아오긴'), document.fonts.load('600 20px "Noto Serif KR"', '장풍클릭출발계속다시시작전진')]),
       new Promise((r) => setTimeout(r, 4000)),
     ]);
   } catch { /* fonts are optional: fall back to system serif */ }
