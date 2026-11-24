@@ -38,13 +38,13 @@ export default async function (app) {
   if (state === 'audiotest') return (await import('../audio/test.js')).runAudioTest(app);
 
   // ---- world backdrop (guarded) ----
-  app.progress(0.1, '天 · sky');
+  app.progress(0.1, '天 · 하늘');
   const env = await tryImport('../world/environment.js', 'createEnvironment', app, { mood: app.params.get('mood') || 'golden' });
-  app.progress(0.25, '地 · earth');
+  app.progress(0.25, '地 · 땅');
   await tryImport('../world/terrain.js', 'createTerrain', app);
   await tryImport('../world/mountains.js', 'createMountains', app);
   if (!app.params.has('nograss')) {
-    app.progress(0.45, '草 · grass');
+    app.progress(0.45, '草 · 풀');
     await tryImport('../world/grass.js', 'createGrass', app);
   }
 
@@ -68,13 +68,13 @@ export default async function (app) {
   env?.setShadowFocus?.(new THREE.Vector3(0, heightAt(0, 30), 30));
 
   // ---- HUD + audio ----
-  app.progress(0.8, '声 · sound');
+  app.progress(0.8, '声 · 소리');
   const hud = createHUD(app);
   const audio = await tryImport('../audio/audio.js', 'createAudio', app);
   try {
     await Promise.race([
       Promise.all([hud.ready, document.fonts.load('64px "Ma Shan Zheng"', '长风天苍野茫第一回风起草动剑鸣终歇继续重来招式声十步杀人千里不留行事了拂衣去深藏身与名萧兮易水寒壮士复还寒山客气危破'),
-        document.fonts.load('400 20px "Noto Serif SC"', '天苍苍野茫茫点击启程第一回行斩格闪锁气剑歇用时斩敌识破'), document.fonts.load('italic 400 16px "Cormorant Garamond"', 'LONG WIND')]),
+        document.fonts.load('400 20px "Noto Serif SC"', '天苍苍野茫茫行斩格闪锁气剑歇'), document.fonts.load('400 20px "Noto Serif KR"', '하늘은아득하고들판끝없어라클릭출발제회시간처패링'), document.fonts.load('italic 400 16px "Cormorant Garamond"', 'LONG WIND')]),
       new Promise((r) => setTimeout(r, 8000)),
     ]);
   } catch { /* ignore */ }
@@ -115,8 +115,8 @@ export default async function (app) {
       emit('player:focus', { value: 72, max: 100 });
       hit(0, 0.1); hit(1, 0.05);
     },
-    banner() { playingSetup([0, 1, 3]); emit('wave:start', { index: 1, title: '风起', sub: 'The Wind Rises', count: 3 }); },
-    boss() { playingSetup([2]); emit('wave:start', { index: 3, title: '剑鸣', sub: 'The Sword Sings', count: 1, boss: true }); },
+    banner() { playingSetup([0, 1, 3]); emit('wave:start', { index: 1, title: '风起', sub: '바람이 일다', count: 3 }); },
+    boss() { playingSetup([2]); emit('wave:start', { index: 3, title: '剑鸣', sub: '검이 울다', count: 1, boss: true }); },
     // mid-fight: a parry ensō, cut ticks, a kill splat and a warning, frozen at their peak for critique
     combat() {
       playingSetup([0, 1, 3]);
@@ -153,7 +153,7 @@ export default async function (app) {
   function fight() {
     demoTimers.forEach(clearTimeout); demoTimers = [];
     playingSetup();
-    at(0.8, () => emit('wave:start', { index: 1, title: '风起', sub: 'The Wind Rises', count: 3 }));
+    at(0.8, () => emit('wave:start', { index: 1, title: '风起', sub: '바람이 일다', count: 3 }));
     at(5.5, () => { emit('lockon', { id: E(0).id }); emit('player:attack', { clip: 'attack1' }); emit('sword:whoosh', { speed: 9, heavy: false, pos: posOf(0) }); });
     at(5.75, () => hit(0, 0.3));
     at(6.3, () => { emit('sword:whoosh', { speed: 11, heavy: false, pos: posOf(0) }); });
@@ -170,7 +170,7 @@ export default async function (app) {
     at(15.5, () => { emit('player:hurt', { damage: 50, pos: posOf(3), dir: { x: 0, y: 0, z: 1 } }); emit('player:hp', { hp: 24, max: 100 }); });
     at(16.5, () => { emit('special', { pos: posOf(3, 1), dir: { x: 0, y: 0, z: -1 } }); hit(3, 1, true); emit('player:focus', { value: 0, max: 100 }); });
     at(17.5, () => emit('wave:clear', { index: 0 }));
-    at(21, () => { emit('wave:start', { index: 3, title: '剑鸣', sub: 'The Sword Sings', count: 1, boss: true }); emit('lockon', { id: E(2).id }); });
+    at(21, () => { emit('wave:start', { index: 3, title: '剑鸣', sub: '검이 울다', count: 1, boss: true }); emit('lockon', { id: E(2).id }); });
     at(26, () => { hit(2, 0.25); });
     at(27, () => emit('enemy:telegraph', { id: E(2).id, pos: posOf(2), unblockable: true }));
     at(28, () => { hit(2, 0.3); E(2).po = 0.95; });
