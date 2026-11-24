@@ -30,11 +30,11 @@ const STICK_R = 54;                                // ring radius (px at u = 1);
 const DEAD = 0.14, SPRINT_ON = 1.12, SPRINT_OFF = 0.96, FOLLOW = 1.45;
 
 // the in-game hint and the pause menu's 招式 list, for thumbs
-const HINT = [['LEFT DRAG', '行', 'move · past the rim 疾 sprint'], ['RIGHT DRAG', '顾', 'look'], ['HOLD 斩', '劈', 'heavy'], ['TAP 格 AT IMPACT', '破', 'parry']];
+const HINT = [['LEFT DRAG', '行', '이동 · 테두리 넘으면 질주'], ['RIGHT DRAG', '顾', '시선'], ['HOLD 斩', '劈', '강하게 베기'], ['TAP 格 AT IMPACT', '破', '패링']];
 const CONTROLS = [
-  ['LEFT DRAG', '行', 'move'], ['PAST THE RIM', '疾', 'sprint'], ['RIGHT DRAG', '顾', 'look'], ['TAP 斩', '斩', 'strike'],
-  ['HOLD 斩', '劈', 'heavy'], ['HOLD 格', '格', 'block · parry at impact'], ['闪', '闪', 'dodge'], ['锁', '锁', 'lock on'],
-  ['气', '气', 'sword qi'], ['剑', '剑', 'draw · sheathe'], ['‖', '歇', 'pause'],
+  ['LEFT DRAG', '行', '이동'], ['PAST THE RIM', '疾', '질주'], ['RIGHT DRAG', '顾', '시선'], ['TAP 斩', '斩', '베기'],
+  ['HOLD 斩', '劈', '강하게 베기'], ['HOLD 格', '格', '막기 · 적중 타이밍 패링'], ['闪', '闪', '회피'], ['锁', '锁', '조준 고정'],
+  ['气', '气', '검기'], ['剑', '剑', '발도 · 납도'], ['‖', '歇', '일시정지'],
 ];
 
 const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
@@ -69,7 +69,7 @@ export function createTouchControls(app, { game, hud } = {}) {
   root.insertBefore(layer, root.querySelector('.scr'));   // under the screens (title, pause, endings)
   const rot = document.createElement('div');
   rot.className = 'wxrot';
-  rot.innerHTML = '<i class="ph"></i><b>横屏游玩更佳</b><em>best played sideways</em>';
+  rot.innerHTML = '<i class="ph"></i><b>가로 화면으로 플레이하면 더 좋습니다</b><em>best played sideways</em>';
   root.appendChild(rot);
   root.classList.add('touch');
   document.documentElement.classList.add('wx-touch');
