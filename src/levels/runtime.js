@@ -66,7 +66,7 @@ export function createLevelRuntime(app, { env = null, level } = {}) {
   if (qual && !hud.querySelector('.pause .chap')) {
     const row = document.createElement('div');
     row.className = 'qual chap';
-    row.innerHTML = '<b>章</b>' + LEVEL_ORDER.map((id) => `<span class="qo${id === level.id ? ' on' : ''}" data-level="${id}">${LEVELS[id].title}</span>`).join('') + '<i>chapter</i>';
+    row.innerHTML = '<b>장</b>' + LEVEL_ORDER.map((id) => `<span class="qo${id === level.id ? ' on' : ''}" data-level="${id}">${LEVELS[id].ko ?? LEVELS[id].title}</span>`).join('') + '<i>chapter</i>';
     qual.after(row);
     row.addEventListener('click', (e) => {
       const id = e.target?.closest?.('[data-level]')?.dataset.level;
@@ -79,7 +79,7 @@ export function createLevelRuntime(app, { env = null, level } = {}) {
   }
   const setVictorySeal = () => {
     const go = hud?.querySelector('.scr.victory .go');
-    if (go && level.next) { go.dataset.act = 'next'; go.innerHTML = '<b>前行</b><i>journey on</i>'; }
+    if (go && level.next) { go.dataset.act = 'next'; go.innerHTML = '<b>전진</b><i>journey on</i>'; }
   };
   setVictorySeal();
   bus.on('game:state', (p) => { if (p?.state === 'victory') setTimeout(setVictorySeal, 50); });
